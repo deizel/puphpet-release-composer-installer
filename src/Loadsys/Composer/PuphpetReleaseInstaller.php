@@ -123,6 +123,6 @@ class PuphpetReleaseInstaller extends LibraryInstaller {
 			}
 		}
 
-		file_put_contents($gitignoreFile, implode(PHP_EOL, $lines));
+		file_put_contents($gitignoreFile, implode(PHP_EOL, $lines) . PHP_EOL);
 	}
 }
