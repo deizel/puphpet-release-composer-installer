@@ -155,7 +155,7 @@ COMPOSER_EXIT_CODE=$?
 
 # End the script if test mode is OFF.
 if [ -z "${TEST_MODE}" ]; then
-	if [ "${COMPOSER_EXIT_CODE}" ]; then
+	if [ "${COMPOSER_EXIT_CODE}" -ne 0 ]; then
 		echo "!! Composer installation failed. Examine the results in \`${BUILD_DIR}\`."
 		echo ''
 		echo "${COMPOSER_OUTPUT}"
