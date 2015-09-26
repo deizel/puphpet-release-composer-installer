@@ -90,8 +90,14 @@ class PuphpetReleaseInstaller extends LibraryInstaller {
 	protected function copyConfigFile($package) {
 		$configFilePath = getcwd() . DS . 'puphpet.yaml';
 		$targetPath = getcwd() . DS . 'puphpet' . DS . 'config.yaml';
+		$symlinkTarget = '..' . DS . 'puphpet.yaml';
+
 		if (is_readable($configFilePath)) {
-			copy($configFilePath, $targetPath);
+			try {
+				unlink($targetPath) && symlink($symlinkTarget, $targetPath);
+			} catch (\Exception $e) {
+				copy($configFilePath, $targetPath);
+			}
 		}
 	}
 
